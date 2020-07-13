@@ -9,6 +9,11 @@ function App() {
   const latestYear = resultData[0].year;
   const [endYear, setEndYear] = useState(latestYear);
 
+  const onChangeSlider = (values) => {
+    setStartYear(values[0]);
+    setEndYear(values[1]);
+  };
+
   const getData = () => {
     let sortedData = [].concat(resultData).sort((a, b) => {
       return a.year - b.year;
@@ -21,6 +26,12 @@ function App() {
 
   return (
     <div className="App">
+      <ReturnsSlider
+        latestYear={latestYear}
+        startYear={startYear}
+        endYear={endYear}
+        onChangeSlider={onChangeSlider}
+      />
       <ReturnsTable resultData={getData()} />
     </div>
   );
